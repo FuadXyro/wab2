@@ -1,472 +1,289 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html><meta charset='UTF-8'/><meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/><meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+<link href="" rel="stylesheet" type="text/css" />
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☠️ Cek Khodam ☠️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-    <style>
-        body {
-            background-color: rgba(74, 34, 12, 0.9); /* Background lebih gelap */
-            font-family: 'Poppins', sans-serif; /* Font modern Poppins */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            min-height: 100vh;
-            margin: 0;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .card {
-            background-color: rgba(147, 148, 171, 0.25);
-            padding: 20px;
-            border: 1px solid #FFA500; /* Border jingga ke kuningan */
-            border-radius: 10px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow lebih gelap */
-            backdrop-filter: blur(10px); /* Blur lebih kuat */
-            position: relative; /* Untuk positioning spinner */
-        }
-
-        h1, p {
-            color: #FFA500; /* Warna font jingga ke kuningan */
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #FFA500; /* Border input */
-            border-radius: 200px;
-            text-align: center;
-            width: 80%;
-            margin-bottom: 20px;
-            background-color: transparent;
-            color: #f1f1f1;
-        }
-
-        button {
-            background-color: #439c8f;
-            color: #ffffff;
-            padding: 10px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 200px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-        }
-
-        button:hover {
-            background-color: #4e4aa7;
-            transform: translateY(-3px); /* Efek naik saat hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow lebih dalam saat hover */
-        }
-
-        .footer {
-            color: #97D3FF;
-            font-weight: bold;
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-        }
-
-        #result {
-            display: none;
-        }
-
-        .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #FFA500; /* Warna jingga ke kuningan */
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -20px; /* Setengah dari tinggi */
-            margin-left: -20px; /* Setengah dari lebar */
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+<title>FuadXyro</title>
 </head>
-
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha:wght@400;700&display=swap');
+:root {
+--warna-bg: rgba(0, 0, 0, .4); 
+--warna-teks: white;
+--warna-bingkai: rgba(255, 255, 255, .7);
+--bingkai: 10px;
+--gaya-font: 'Ubuntu', sans-serif;
+--gaya-font-sec: 'Sriracha', sans-serif;
+}
+body{background-color:#101010;font-family:var(--gaya-font);padding: 25px;-webkit-user-select: none; -ms-user-select: none; user-select: none;} a{text-decoration:none;}
+body::before{content:"\00A9  FuadXyro";padding:8px;border-radius:12px;background:black;color:white;opacity:.7;font-size:9px;position:fixed;bottom:20px;left:20px;z-index:999}
+#bgbelakang{display:block;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);transition:all 1s ease;}
+#bgbelakang img{transition:all 1.7s ease;opacity:0;width:100%;height:100%}
+#fotolove img{transition:all .5s ease;width:75px;height:75px;padding:0;background:none}
+#loveIn img{display:inline-flex;background:none;width:130px;height:130px;transition:all .3s ease;} 
+#ket, #kot, #ketgeser, .halo{text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);font-size:17px;font-weight:700;color:white}
+#ket, #kot{transform: scale(1) !important;margin-top:20px !important;font-size:16px;font-weight:700;font-family:var(--gaya-font-sec);opacity:1}
+#kot a{font-weight:700;color:yellow}
+#ketgeser{position:absolute;margin-top:30px;font-size:10px;font-weight:400;transform:scale(0);opacity:0;transition:all .7s ease;}
+@keyframes leaves {0% {transform: scale(1.0);} 100% {transform: scale(.85);}}
+.lovein{margin-top:25vh;background:#fff;border-radius:50%;width:40px;height:40px;padding:10px;font-size:30px;display:flex;align-items:center;text-align:center;justify-content:center;transition:all .3s ease;}
+.lovein:hover{cursor:pointer}
+.lovein svg{stroke:#ff0000;stroke-width:1.3;fill:none;width:35px;height:35px}
+@keyframes kont{0%  {left:-1px; top:-3px;} 50% {left:1px; top:3px;} 100% {left:-1px; top:-3px;}}
+blockquote{opacity:0;visibility:hidden;transition:all 1s ease;position:relative;margin-left:0;margin-right:0;}
+blockquote{width:400px;min-height:30px;background:none;color:var(--warna-teks);text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);text-align:center;line-height:1.3em;padding:25px;border: 0px solid var(--warna-bingkai);border-radius:var(--bingkai);}
+.awalan{margin-top:20px;width:250px;min-height:25px;padding:12px;font-size:13px;color:white;background:rgba(0,0,0,.5);border:1px solid #fff;border-radius:20px;display:flex;align-items:center;text-align:left}
+.awalan svg{margin-right:15px;width:25px;height:25px;stroke:white}
+p{opacity:0;color:var(--warna-teks);font-size:15px;font-weight:700;line-height:1.4em;margin:0px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);transform: scale(.1);transition:all .3s ease;}
+#text-container{opacity:1;transform: scale(1);}
+.word {opacity: 0; transition: opacity 1s ease-in-out; display: inline-block;margin-right: 5px;}
+#spasi::before{content:"\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"}
+#kalimat, #kalimatc{opacity:1;transform: scale(1);}
+#kalimatc{font-size:14px;font-weight:700}
+#katajawab{font-weight:400;margin:0;display:none;}
+@keyframes rto{from {transform:scale(1);} to {transform:scale(1.1);}}
+@keyframes aniopa{0% {transform: scale(1);} 50% {transform: scale(.75);} 100% {transform: scale(1);}}
+#katabawah{transform:scale(.1);font-size:30px;font-weight:400}
+#katatiga{font-size:18px;} #kataempat{font-size:13px;font-weight:400;text-align:right;}
+@keyframes rtf{from {transform: rotate(0deg);} to {transform: rotate(360deg);}} @keyframes rt{from {transform: scale(.9);/* transform: rotate(-5deg); */} to {transform: scale(1);/* transform: rotate(5deg); */}}
+#bq img{display:none;padding:10px;width:130px;height:130px;margin:20px 0 0 0;}
+#bq img:first-child{display:inline-flex}
+#akhiran{display:none;color:#FFC700;font-size:14px;text-align:center;background:rgba(0,0,0,.55);text-shadow: 0px;padding:10px;border-radius:var(--bingkai);line-height:10px;transition:all .2s ease;} #akhiran:hover{transform: scale(.9);opacity:.5;}
+#pergeseran{opacity:0;visibility:hidden;transition:all 1s ease;display:flex;flex-wrap:nowrap;align-items:flex-start;justify-content:flex-start;position:relative;max-width:500px;padding:0 20px; overflow-y:hidden;overflow-x:scroll;scroll-behavior:smooth;scroll-snap-type:x mandatory; -ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+#pergeseran p{background:#003A76;color:white;border: 1px dashed #fff;border-radius:8px;padding:8px;display:flex;flex-wrap:nowrap;text-align:center;font-size:16px;font-weight:700;align-items:center;justify-content:center;flex-shrink:0; width:90%; min-height:130px;margin:0 15px 0 0; scroll-snap-align:center} #pergeseran > *:last-child{margin-right:0} #pergeseran:after{content:'';display:block;flex-shrink:0; align-self:stretch;padding-left:20px}
+#pergeseran p b{display:block;} #pergeseran p b img{width:80px;height:80px;margin:20px 0;}
+#tm{color:#FFB400;transition:all .5s ease;} #tm:hover{transform: scale(.7);}
+#idgeser{position:relative;top:30vh;font-size:17px;color:white}
+#contTom{opacity:0;margin:0;display:flex;align-items:left;list-style:none;transition:all 1s ease;}
+.button{cursor:pointer;display:inline-flex;align-items:center; margin:0;margin:-10px 0 12px 0;transition:all .3s ease;padding:10px;outline:0;border:1px solid var(--warna-bingkai); border-radius:var(--bingkai);line-height:15px;background:var(--warna-bg);color:var(--warna-teks);font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;z-index:1} 
+.button:hover{transform: scale(.90);opacity:.98;}
+#Bn{margin-left:14px}
+.lovein{font-size:50px;display:flex;align-items:center;justify-content:center;transition:all .3s ease;}
+.lovein svg{width:80px;height:80px;fill:#fefefe}
+.content2{display:block;text-align:center;width:100%;height:180px;margin-top:50px;}
+.content2 > *{display:flex;align-items:center;justify-content:center;margin-top:15px;font-size:17px;color:white}
+.image img{border-radius:10%;transform:scale(.1);transition:all .8s ease;}
+#k2 .image > *{margin-bottom:40px;} #k2{font-weight:700;font-size:17px;color:white;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);} #final1{transition:all 3s ease;}
+#idkirim{font-size:13px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);color:white;transition:all .5s ease;}
+#idkirim{opacity:0;visibility:hidden;margin-top:100px} #idkirim:hover{transform:scale(.8);}
+.content2{display:none;}
+#Content{animation-name:none;animation-duration: 3s;animation-iteration-count: infinite;position:relative;opacity:0;margin-top:50px;width:100%;height:180px}
+#Content > *{display:flex;align-items:center;text-align:center;justify-content:center;margin-top:15px;}
+#Content img{display:none;box-shadow: 0 4px 30px rgba(255,255,255, 0.3);backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);width:90px;height:90px;background: rgba(255, 255, 255, 0.7);border: 1px solid rgba(255, 255, 255, 0.3);border-radius: 50%;padding:10px;margin:20px 0 0 0;}
+.swal2-modal > *{font-size:16px}
+.swal2-title{line-height:1.3em;margin-right:20px;margin-left:20px;font-size:18px;text-align:center;padding:15px 30px 0 30px;}
+.swal2-timer-progress-bar-container > *{opacity:.3;background:#007AFF;margin:0 5px}
+.swal2-modal{background:rgba(255,255,255,1);border: .7px solid #fff;border-radius:var(--bingkai);top:-60px;}
+.fa-heart {opacity:.18;color:white;font-size: 20px;position: absolute;animation:  heartMove linear 1;top: -10vh;z-index: 0;}
+@keyframes heartMove {0%{transform: translateY(-10vh) ;} 100%{transform: translateY(100vh) ;}}
+.overlay {position: fixed;top: 0;left: 0;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;z-index:100;}
+.loading-message {font-size: 14px;font-weight: bold;color:white;text-align: center;}
+</style>
 <body>
-    <div class="card">
-        <h1>Cek Khodam</h1>
-        <p>Masukkan nama untuk mengetahui khodam</p>
-        <input type="text" id="nameInput" placeholder="Ketik nama kamu di sini">
-        <button onclick="cekKhodam()">Cek Khodam</button>
-        <div id="loading" class="loading-spinner" style="display: none;"></div>
-        <button onclick="resetForm()" style="margin-top: 20px;">Cek Lagi</button>
-        <div id="result">
-            <h2 id="khodamName"></h2>
-            <p id="khodamMeaning"></p>
-        </div>
-    </div>
-    <div class="footer">
-        © 2024 <a target="_blank">heryyy</a>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        function cekKhodam() {
-            const nameInput = document.getElementById('nameInput').value;
-            if (!nameInput) {
-                Swal.fire({
-                    title: 'GAK BOLEH KOSONG!😡',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                return;
-            }
-            document.getElementById('loading').style.display = 'block'; // Tampilkan spinner
-            setTimeout(() => {
-                const khodams = [
-                { name: "Harimau Putih", meaning: "Kamu kuat dan berani seperti harimau, karena pendahulumu mewariskan kekuatan besar padamu." },
-                { name: "Lampu Tertidur", meaning: "Terlihat ngantuk tapi selalu memberikan cahaya yang hangat" },
-                { name: "Panda Ompong", meaning: "Kamu menggemaskan dan selalu berhasil membuat orang tersenyum dengan keanehanmu." },
-                { name: "Bebek Karet", meaning: "Kamu selalu tenang dan ceria, mampu menghadapi gelombang masalah dengan senyum." },
-                { name: "Ninja Turtle", meaning: "Kamu lincah dan tangguh, siap melindungi yang lemah dengan kekuatan tempurmu." },
-                { name: "Kucing Kulkas", meaning: "Kamu misterius dan selalu ada di tempat-tempat yang tak terduga." },
-                { name: "Sabun Wangi", meaning: "Kamu selalu membawa keharuman dan kesegaran di mana pun kamu berada." },
-                { name: "Semut Kecil", meaning: "Kamu pekerja keras dan selalu bisa diandalkan dalam situasi apa pun." },
-                { name: "Moge Suzuki", meaning: "Kamu cepat dan penuh gaya, selalu menjadi pusat perhatian di jalanan." },
-                { name: "Cupcake Pelangi", meaning: "Kamu manis dan penuh warna, selalu membawa kebahagiaan dan keceriaan." },
-                { name: "Robot Mini", meaning: "Kamu canggih dan selalu siap membantu dengan kecerdasan teknologi tinggi." },
-                { name: "Ikan Terbang", meaning: "Kamu unik dan penuh kejutan, selalu melampaui batasan yang ada." },
-                { name: "Ayam Goreng", meaning: "Kamu selalu disukai dan dinanti oleh banyak orang, penuh kelezatan dalam setiap langkahmu." },
-                { name: "Kecoa Terbang", meaning: "Kamu selalu mengagetkan dan bikin heboh seisi ruangan." },
-                { name: "Kambing Ngebor", meaning: "Kamu unik dan selalu bikin orang tertawa dengan tingkah lakumu yang aneh." },
-                { name: "Kerupuk Renyah", meaning: "Kamu selalu bikin suasana jadi lebih seru dan nikmat." },
-                { name: "Celengan Babi", meaning: "Kamu selalu menyimpan kejutan di dalam dirimu." },
-                { name: "Lemari Tua", meaning: "Kamu penuh dengan cerita dan kenangan masa lalu." },
-                { name: "Kopi Susu", meaning: "Kamu manis dan selalu bikin semangat orang-orang di sekitarmu." },
-                { name: "Sapu Lidi", meaning: "Kamu kuat dan selalu bisa diandalkan untuk membersihkan masalah." },
-                { name: "Kuda Lumping", meaning: "Kamu penuh semangat dan selalu tampil beda di setiap kesempatan." },
-                { name: "Sepatu Roda", meaning: "Kamu cepat dan lincah, selalu bergerak ke depan dengan penuh gaya." },
-                { name: "Bola Pingpong", meaning: "Kamu ringan dan selalu bikin permainan jadi lebih seru." },
-                { name: "Lumba-lumba", meaning: "Kamu pintar dan selalu membawa keceriaan di lautan kehidupan." },
-                { name: "Kucing Gemuk", meaning: "Kamu santai dan selalu bikin orang tersenyum dengan kelucuanmu." },
-                { name: "Iguana Pink", meaning: "Kamu eksotis dan selalu menarik perhatian dengan warnamu yang unik." },
-                { name: "Bantal Guling", meaning: "Kamu nyaman dan selalu dibutuhkan saat waktu istirahat." },
-                { name: "Komputer Jadul", meaning: "Kamu klasik dan penuh dengan pengetahuan di dalam dirimu." },
-                { name: "Kasur Empuk", meaning: "Kamu selalu memberikan kenyamanan dan ketenangan." },
-                { name: "Bola Bekel", meaning: "Kamu kecil tapi selalu memberikan kebahagiaan di setiap permainan." },
-                { name: "Es Krim Pelangi", meaning: "Kamu manis dan penuh warna, selalu menyegarkan hari-hari." },
-                { name: "Biskuit Coklat", meaning: "Kamu selalu bikin ketagihan dengan kelezatanmu yang tak tertahankan." },
-                { name: "Nasi Padang", meaning: "Kamu selalu bikin kenyang dan puas dengan kelezatanmu yang khas." },
-                { name: "Roti Bakar", meaning: "Kamu sederhana tapi selalu bikin orang merasa nyaman." },
-                { name: "Sepeda Ontel", meaning: "Kamu klasik dan selalu memberikan kesenangan di setiap perjalanan." },
-                { name: "Sate Kambing", meaning: "Kamu gurih dan selalu jadi favorit di setiap kesempatan." },
-                { name: "Kue Cubit", meaning: "Kamu kecil tapi selalu bikin orang bahagia dengan rasamu yang enak." },
-                { name: "Bakso Urat", meaning: "Kamu kuat dan selalu memberikan kenikmatan di setiap gigitan." },
-                { name: "Es Kelapa", meaning: "Kamu segar dan selalu bikin adem di saat-saat panas." },
-                { name: "Siomay Bandung", meaning: "Kamu selalu bikin ketagihan dengan rasa khasmu yang lezat." },
-                { name: "Bajigur Hangat", meaning: "Kamu selalu bikin suasana jadi hangat dan nyaman." },
-                { name: "Martabak Manis", meaning: "Kamu penuh kejutan dengan isi yang manis dan nikmat." },
-                { name: "Permen Karet", meaning: "Kamu selalu bikin suasana jadi lebih ceria dengan kenikmatanmu yang kenyal." },
-                { name: "Pisang Goreng", meaning: "Kamu selalu bikin suasana jadi lebih hangat dan nyaman." },
-                { name: "Telur Dadar", meaning: "Kamu sederhana tapi selalu bikin orang puas dengan kelezatanmu." },
-                { name: "Es Buah", meaning: "Kamu segar dan penuh warna, selalu bikin hari jadi lebih ceria." },
-                { name: "Mie Goreng", meaning: "Kamu selalu bikin kenyang dan puas dengan rasamu yang lezat." },
-                { name: "Puding Coklat", meaning: "Kamu manis dan selalu bikin suasana jadi lebih nyaman." },
-                { name: "Gulai Kambing", meaning: "Kamu kaya rasa dan selalu bikin orang ketagihan dengan kelezatanmu." },
-                { name: "Kue Nastar", meaning: "Kamu selalu hadir di saat-saat spesial dengan rasa yang manis dan enak." },
-                { name: "Krupuk Ikan", meaning: "Kamu renyah dan selalu bikin suasana jadi lebih seru." },
-                { name: "Es Teler", meaning: "Kamu segar dan penuh kejutan dengan campuran rasa yang enak." },
-                { name: "Rujak Buah", meaning: "Kamu segar dan selalu bikin suasana jadi lebih hidup dengan rasamu yang pedas dan manis." },
-                { name: "Soto Ayam", meaning: "Kamu selalu bikin hangat dan puas dengan kuahmu yang lezat." },
-                { name: "Tahu Bulat", meaning: "Kamu selalu hadir di momen-momen yang pas dengan rasa yang enak." },
-                { name: "Keripik Singkong", meaning: "Kamu renyah dan selalu bikin suasana jadi lebih seru." },
-                { name: "Kacang Goreng", meaning: "Kamu selalu jadi camilan favorit di setiap kesempatan." },
-                { name: "Tongseng Sapi", meaning: "Kamu kaya rasa dan selalu bikin orang ketagihan dengan kelezatanmu." },
-                { name: "Sate Padang", meaning: "Kamu selalu bikin kenyang dan puas dengan rasa khasmu yang lezat." },
-                { name: "Nasi Uduk", meaning: "Kamu selalu bikin kenyang dan puas dengan rasa gurihmu yang enak." },
-                { name: "Cendol Dawet", meaning: "Kamu segar dan selalu bikin suasana jadi lebih adem di saat-saat panas." },
-                { name: "Onde-onde", meaning: "Kamu selalu hadir di saat-saat spesial dengan rasa yang manis dan enak." },
-                { name: "Kolak Pisang", meaning: "Kamu manis dan selalu bikin suasana jadi lebih hangat dan nyaman." },
-                { name: "Macan Kumbang", meaning: "Kamu misterius dan kuat, seperti macan yang jarang terlihat tapi selalu waspada." },
-                { name: "Kuda Emas", meaning: "Kamu berharga dan kuat, siap untuk berlari menuju kesuksesan." },
-                { name: "Elang Biru", meaning: "Kamu memiliki visi yang tajam dan dapat melihat peluang dari jauh." },
-                { name: "Indomie Goreng", meaning: "Selalu bikin kenyang dan bahagia" },
-                { name: "Es Krim Meleleh", meaning: "Selalu mencairkan suasana dengan rasa manisnya" },
-                { name: "Bakso Ulet", meaning: "Selalu gigih dan bulat dalam menghadapi masalah" },
-                { name: "Lem Super", meaning: "Selalu lengket dalam situasi yang rumit" },
-                { name: "Kecap Manis", meaning: "Selalu memberikan sentuhan manis dalam hidup" },
-                { name: "Sabun Mandi", meaning: "Selalu bersih dan wangi" },
-                { name: "Kopi Tumpah", meaning: "Selalu bersemangat, tapi kadang berantakan" },
-                { name: "Sepeda Ontel", meaning: "Selalu klasik dan sederhana" },
-                { name: "Roti Bakar", meaning: "Selalu hangat dan enak" },
-                { name: "Kucing Kampung", meaning: "Selalu mandiri dan penuh petualangan" },
-                { name: "Jamu Pahit", meaning: "Selalu memberi kekuatan meski tak enak di awal" },
-                { name: "Teh Celup", meaning: "Selalu memberikan rasa hangat di hati" },
-                { name: "Tas Kresek", meaning: "Selalu ringan dan praktis" },
-                { name: "Es Kelapa", meaning: "Selalu segar dan menyegarkan" },
-                { name: "Motor Astrea", meaning: "Selalu setia dan bandel" },
-                { name: "Mie Instan", meaning: "Selalu cepat dan mengenyangkan" },
-                { name: "Bolu Kukus", meaning: "Selalu lembut dan manis" },
-                { name: "Tahu Bulat", meaning: "Selalu enak di segala suasana" },
-                { name: "Nasi Uduk", meaning: "Selalu cocok di segala waktu" },
-                { name: "Susu Kental Manis", meaning: "Selalu menambah kenikmatan" },
-                { name: "Kopi Hitam", meaning: "Selalu memberi semangat di pagi hari" },
-                { name: "Kacang Goreng", meaning: "Selalu asyik untuk ngemil" },
-                { name: "Ayam Goreng Tepung", meaning: "Selalu renyah dan nikmat" },
-                { name: "Sambal Terasi", meaning: "Selalu pedas dan menggigit" },
-                { name: "Ketoprak", meaning: "Selalu mengenyangkan dan lezat" },
-                { name: "Cendol Dawet", meaning: "Selalu segar di siang hari" },
-                { name: "Gado-Gado", meaning: "Selalu penuh warna dan rasa" },
-                { name: "Pisang Goreng", meaning: "Selalu manis dan gurih" },
-                { name: "Martabak Manis", meaning: "Selalu lezat dan memanjakan lidah" },
-                { name: "Bubur Ayam", meaning: "Selalu hangat dan mengenyangkan" },
-                { name: "Soto Ayam", meaning: "Selalu kaya rasa dan gurih" },
-                { name: "Nasi Padang", meaning: "Selalu penuh dengan kenikmatan" },
-                { name: "Rendang Daging", meaning: "Selalu empuk dan kaya rempah" },
-                { name: "Nasi Goreng", meaning: "Selalu praktis dan enak" },
-                { name: "Bakmi Jawa", meaning: "Selalu menggugah selera" },
-                { name: "Sate Ayam", meaning: "Selalu enak di segala acara" },
-                { name: "Gulai Kambing", meaning: "Selalu kaya rasa dan lezat" },
-                { name: "Rawon Sapi", meaning: "Selalu hitam dan nikmat" },
-                { name: "Ikan Bakar", meaning: "Selalu gurih dan enak" },
-                { name: "Pepes Tahu", meaning: "Selalu lezat dan bergizi" },
-                { name: "Tempe Mendoan", meaning: "Selalu gurih dan renyah" },
-                { name: "Keripik Singkong", meaning: "Selalu renyah dan menggoda" },
-                { name: "Jus Alpukat", meaning: "Selalu segar dan menyehatkan" },
-                { name: "Es Teler", meaning: "Selalu segar dan nikmat" },
-                { name: "Bubur Kacang Hijau", meaning: "Selalu hangat dan mengenyangkan" },
-                { name: "Bakpao", meaning: "Selalu lembut dan enak" },
-                { name: "Pempek", meaning: "Selalu gurih dan kenyal" },
-                { name: "Sosis Bakar", meaning: "Selalu enak di segala suasana" },
-                { name: "Lumpia Semarang", meaning: "Selalu gurih dan nikmat" },
-                { name: "Otak-Otak", meaning: "Selalu enak dan gurih" },
-                { name: "Pastel", meaning: "Selalu renyah dan nikmat" },
-                { name: "Cilok", meaning: "Selalu kenyal dan enak" },
-                { name: "Bakwan Jagung", meaning: "Selalu gurih dan lezat" },
-                { name: "Risol", meaning: "Selalu renyah dan enak" },
-                { name: "Combro", meaning: "Selalu gurih dan pedas" },
-                { name: "Getuk", meaning: "Selalu manis dan kenyal" },
-                { name: "Tape Singkong", meaning: "Selalu manis dan segar" },
-                { name: "Wedang Jahe", meaning: "Selalu hangat dan menenangkan" },
-                { name: "Dawet Ayu", meaning: "Selalu segar dan menggoda" },
-                { name: "Es Buah", meaning: "Selalu segar dan penuh warna" },
-                { name: "Es Doger", meaning: "Selalu manis dan menyegarkan" },
-                { name: "Tengkleng", meaning: "Selalu gurih dan enak" },
-                { name: "Gulai Nangka", meaning: "Selalu kaya rasa dan lezat" },
-                { name: "Coto Makassar", meaning: "Selalu gurih dan nikmat" },
-                { name: "Nasi Liwet", meaning: "Selalu enak dan mengenyangkan" },
-                { name: "Bubur Sumsum", meaning: "Selalu lembut dan manis" },
-                { name: "Kue Cubit", meaning: "Selalu manis dan lembut" },
-                { name: "Bolu Pandan", meaning: "Selalu harum dan enak" },
-                { name: "Onde-Onde", meaning: "Selalu kenyal dan manis" },
-                { name: "Serabi Solo", meaning: "Selalu lembut dan gurih" },
-                { name: "Lemper Ayam", meaning: "Selalu gurih dan lezat" },
-                { name: "Kue Lumpur", meaning: "Selalu lembut dan manis" },
-                { name: "Kue Lapis", meaning: "Selalu warna-warni dan manis" },
-                { name: "Kue Putu", meaning: "Selalu hangat dan manis" },
-                { name: "Es Pisang Ijo", meaning: "Selalu segar dan manis" },
-                { name: "Klepon", meaning: "Selalu manis dan kenyal" },
-                { name: "Martabak Telur", meaning: "Selalu gurih dan enak" },
-                { name: "Ayam Penyet", meaning: "Selalu pedas dan menggigit" },
-                { name: "Ikan Asin", meaning: "Selalu gurih dan asin" },
-                { name: "Sop Buntut", meaning: "Selalu kaya rasa dan nikmat" },
-                { name: "Bakso Malang", meaning: "Selalu gurih dan lezat" },
-                { name: "Pempek Palembang", meaning: "Selalu enak dan gurih" },
-                { name: "Tahu Gejrot", meaning: "Selalu pedas dan segar" },
-                { name: "Gepuk Daging", meaning: "Selalu empuk dan lezat" },
-                { name: "Ayam Betutu", meaning: "Selalu kaya bumbu dan enak" },
-                { name: "Ikan Gurame", meaning: "Selalu gurih dan nikmat" },
-                { name: "Udang Goreng", meaning: "Selalu renyah dan enak" },
-                { name: "Cumi Saus Tiram", meaning: "Selalu gurih dan lezat" },
-                { name: "Royco Ayam", meaning: "Selalu menambah rasa gurih pada setiap kesempatan" },
-                { name: "Honda Supra", meaning: "Selalu bisa diandalkan di jalanan" },
-                { name: "Kompor Meledak", meaning: "Selalu memberikan kehangatan yang luar biasa" },
-                { name: "Es Batu Menangis", meaning: "Selalu mencair di saat yang tak terduga" },
-                { name: "Teh Botol Sosro", meaning: "Selalu segar di segala suasana" },
-                { name: "Payung Bocor", meaning: "Selalu memberikan kejutan saat hujan" },
-                { name: "Kursi Tertawa", meaning: "Selalu membuatmu nyaman dengan gayanya yang lucu" },
-                { name: "Motor Vespa", meaning: "Selalu klasik dan penuh gaya" },
-                { name: "Ember Bocor", meaning: "Selalu berfungsi walau tak sempurna" },
-                { name: "Bantal Gebuk", meaning: "Selalu menemani tidurmu dengan kenyamanan" },
-                { name: "Mie Sedap", meaning: "Selalu cepat dan mengenyangkan" },
-                { name: "Komputer Ngadat", meaning: "Selalu menantang kesabaranmu" },
-                { name: "Handphone Jadul", meaning: "Selalu setia meski ketinggalan zaman" },
-                { name: "Kulkas Berisik", meaning: "Selalu bising tapi berguna" },
-                { name: "Rokok Gudang Garam", meaning: "Selalu nikmat di setiap tarikan" },
-                { name: "Radio Tua", meaning: "Selalu menghidupkan suasana" },
-                { name: "Sepatu Butut", meaning: "Selalu nyaman meski usang" },
-                { name: "Blender Bising", meaning: "Selalu ribut tapi membantu" },
-                { name: "Sapu Ijuk", meaning: "Selalu membersihkan dengan efektif" },
-                { name: "Kipas Angin", meaning: "Selalu memberikan angin segar" },
-                { name: "Rice Cooker", meaning: "Selalu memasak nasi dengan sempurna" },
-                { name: "Senter Mati", meaning: "Selalu ada saat dibutuhkan" },
-                { name: "Pisau Tumpul", meaning: "Selalu menantang dalam memotong" },
-                { name: "Honda Beat", meaning: "Selalu lincah di jalanan" },
-                { name: "Kerupuk Udang", meaning: "Selalu renyah dan nikmat" },
-                { name: "Gitar Sumbang", meaning: "Selalu memberikan nada yang tak terduga" },
-                { name: "Meja Bergoyang", meaning: "Selalu bergoyang saat digunakan" },
-                { name: "Jok Motor", meaning: "Selalu empuk dan nyaman" },
-                { name: "Tikar Lipat", meaning: "Selalu praktis di segala acara" },
-                { name: "Paku Karet", meaning: "Selalu lentur dan tak terduga" },
-                { name: "Lemari Besi", meaning: "Selalu kuat dan kokoh" },
-                { name: "Sepeda BMX", meaning: "Selalu siap untuk petualangan" },
-                { name: "Tas Belanja", meaning: "Selalu praktis dan berguna" },
-                { name: "Lilin Meleleh", meaning: "Selalu memberikan cahaya di kegelapan" },
-                { name: "Kabel Kusut", meaning: "Selalu membuat bingung" },
-                { name: "Honda CBR", meaning: "Selalu cepat dan penuh gaya" },
-                { name: "Sendok Miring", meaning: "Selalu memberi sensasi berbeda" },
-                { name: "Gelas Retak", meaning: "Selalu siap walau tak sempurna" },
-                { name: "Lampu Tidur", meaning: "Selalu memberikan cahaya lembut" },
-                { name: "Karet Gelang", meaning: "Selalu fleksibel dan berguna" },
-                { name: "Honda Vario", meaning: "Selalu tangguh di segala medan" },
-                { name: "Botol Kaca", meaning: "Selalu jernih dan berguna" },
-                { name: "Rantang Susun", meaning: "Selalu membawa bekal dengan rapi" },
-                { name: "Kunci Inggris", meaning: "Selalu siap untuk perbaikan" },
-                { name: "Honda Tiger", meaning: "Selalu gagah dan kuat" },
-                { name: "Toples Kue", meaning: "Selalu penuh kejutan manis" },
-                { name: "Wajan Teflon", meaning: "Selalu anti lengket" },
-                { name: "Honda Scoopy", meaning: "Selalu trendy dan stylish" },
-                { name: "Kasur Busa", meaning: "Selalu empuk dan nyaman" },
-                { name: "Sapu Lidi", meaning: "Selalu membersihkan dengan efektif" },
-                { name: "Panci Presto", meaning: "Selalu cepat dan praktis" },
-                { name: "Honda PCX", meaning: "Selalu mewah dan nyaman" },
-                { name: "Talenan Kayu", meaning: "Selalu setia menemani dapur" },
-                { name: "Gergaji Tumpul", meaning: "Selalu menantang dalam memotong" },
-                { name: "Honda Blade", meaning: "Selalu tajam di jalanan" },
-                { name: "Bantal Kapuk", meaning: "Selalu empuk dan lembut" },
-                { name: "Penghapus Karet", meaning: "Selalu siap menghapus kesalahan" },
-                { name: "Honda Revo", meaning: "Selalu tangguh dan hemat" },
-                { name: "Laci Meja", meaning: "Selalu menyimpan rahasia" },
-                { name: "Stoples Kaca", meaning: "Selalu jernih dan berisi" },
-                { name: "Honda Verza", meaning: "Selalu kuat dan tahan lama" },
-                { name: "Cermin Retak", meaning: "Selalu memberikan pantulan unik" },
-                { name: "Pena Bocor", meaning: "Selalu meninggalkan jejak" },
-                { name: "Honda CB150R", meaning: "Selalu cepat dan bertenaga" },
-                { name: "Baskom Plastik", meaning: "Selalu ringan dan praktis" },
-                { name: "Paku Beton", meaning: "Selalu kuat dan kokoh" },
-                { name: "Honda MegaPro", meaning: "Selalu gagah di jalanan" },
-                { name: "Gembok Rusak", meaning: "Selalu menantang keamanan" },
-                { name: "Sandal Jepit", meaning: "Selalu santai dan nyaman" },
-                { name: "Honda Win", meaning: "Selalu menang di segala medan" },
-                { name: "Lemari Plastik", meaning: "Selalu ringan dan praktis" },
-                { name: "Kulkas Mini", meaning: "Selalu dingin dan efisien" },
-                { name: "Honda CRF", meaning: "Selalu tangguh di segala medan" },
-                { name: "Cangkir Teh", meaning: "Selalu menghangatkan suasana" },
-                { name: "Kompor Gas", meaning: "Selalu cepat dan panas" },
-                { name: "Honda Monkey", meaning: "Selalu lucu dan unik" },
-                { name: "Cerek Air", meaning: "Selalu siap menyajikan kehangatan" },
-                { name: "Selimut Tebal", meaning: "Selalu hangat dan nyaman" },
-                { name: "Honda Beat Street", meaning: "Selalu lincah dan tangguh" },
-                { name: "Meja Rias", meaning: "Selalu menampilkan yang terbaik" },
-                { name: "Gelas Plastik", meaning: "Selalu ringan dan praktis" },
-                { name: "Honda X-ADV", meaning: "Selalu siap untuk petualangan" },
-                { name: "Rak Buku", meaning: "Selalu penuh pengetahuan" },
-                { name: "Sisir Patah", meaning: "Selalu berfungsi meski tak sempurna" },
-                { name: "Honda Rebel", meaning: "Selalu berjiwa pemberontak" },
-                { name: "Bantal Guling", meaning: "Selalu nyaman di pelukan" },
-                { name: "Honda CRF250", meaning: "Selalu siap menghadapi tantangan" },
-                { name: "Lemari Es", meaning: "Selalu menyimpan kesegaran" },
-                { name: "Honda Forza", meaning: "Selalu kuat dan bertenaga" },
-                { name: "Piring Retak", meaning: "Selalu menantang dengan keunikannya" },
-                { name: "Harimau Loreng", meaning: "Kamu tangguh dan memiliki kekuatan untuk melindungi dan menyerang." },
-                { name: "Gajah Putih", meaning: "Kamu bijaksana dan memiliki kekuatan besar, lambang dari keberanian dan keteguhan hati." },
-                { name: "Banteng Sakti", meaning: "Kamu kuat dan penuh semangat, tidak takut menghadapi rintangan." },
-                { name: "Ular Raksasa", meaning: "Kamu memiliki kebijaksanaan dan kekuatan tersembunyi, siap menyerang jika diperlukan." },
-                { name: "Ikan Dewa", meaning: "Kamu tenang dan penuh kedamaian, membawa rezeki dan keberuntungan." },
-                { name: "Kucing Hitam", meaning: "Kamu misterius dan penuh dengan rahasia, membawa keberuntungan bagi yang memahami." },
-                { name: "Rusa Emas", meaning: "Kamu anggun dan berharga, selalu dihargai oleh orang-orang di sekitarmu." },
-                { name: "Singa Bermahkota", meaning: "Kamu lahir sebagai pemimpin, memiliki kekuatan dan kebijaksanaan seorang raja." },
-                { name: "Kijang Perak", meaning: "Kamu cepat dan cekatan, selalu waspada dan siap untuk melompat lebih jauh." },
-                { name: "Kipas Angin Kelereng", meaning: "Selalu memberikan angin segar dengan kocaknya" },
-                { name: "Penghapus Ajaib", meaning: "Mampu menghapus kesalahan dengan cara yang lucu" },
-                { name: "Kertas Guling Goyang", meaning: "Tak pernah diam dan selalu menghibur" },
-                { name: "Pulpen Melambai", meaning: "Selalu memberi tanda dengan cara yang unik" },
-                { name: "Tali Tambang Tertawa", meaning: "Membuat pekerjaan menjadi lebih menyenangkan" },
-                { name: "Botol Minyak Mengejek", meaning: "Seringkali memberi komentar lucu" },
-                { name: "Topi Terbang", meaning: "Membuat kepala menjadi lebih ringan dengan keunikannya" },
-                { name: "Payung Terbalik", meaning: "Selalu membalikkan situasi dengan cara yang tak terduga" },
-                { name: "Piring Berjalan", meaning: "Tak pernah tinggal diam di tempatnya" },
-                { name: "Ember Tertawa", meaning: "Menghadirkan keceriaan di setiap kegiatan" },
-                { name: "Lampu Tidur Tertidur", meaning: "Terlihat malas-malasan tapi selalu memberikan cahaya yang hangat" },
-                { name: "Gelas Bergoyang", meaning: "Selalu memberikan sensasi yang berbeda dalam menikmati minuman" },
-                { name: "Kunci Kamar Mandi Keriting", meaning: "Selalu membuat masalah kecil menjadi lucu" },
-                { name: "Pisau Potong Hati", meaning: "Mampu memotong rasa sakit dengan kelebihannya" },
-                { name: "Tisu Terbang", meaning: "Selalu siap membantu dengan cepat dan lincah" },
-                { name: "Kardus Kocak", meaning: "Tak pernah membosankan, selalu menyimpan kejutan di dalamnya" },
-                { name: "Kain Lap Terbang", meaning: "Berguna untuk membersihkan dengan cara yang seru" },
-                { name: "Sendok Garpu Goyang", meaning: "Menjadi pasangan yang serasi dalam setiap makanan" },
-                { name: "Tempat Pensil Teriak", meaning: "Tak pernah diam dan selalu meminta perhatian" },
-                { name: "Buku Lucu", meaning: "Mampu membuatmu tertawa di setiap halaman" },
-                { name: "Cermin Menggigil", meaning: "Selalu memberikan pantulan yang lucu" },
-                { name: "Kamera Gelantungan", meaning: "Selalu mengabadikan momen-momen lucu" },
-                { name: "Cangkir Cemberut", meaning: "Meski terlihat cemberut, tapi selalu menyajikan minuman dengan baik" },
-                { name: "Kursi Muter", meaning: "Memberikan sensasi berputar di setiap duduknya" },
-                { name: "Lemari Tertidur", meaning: "Selalu memberikan kenyamanan yang tak terduga" },
-                { name: "Tas Terbang", meaning: "Selalu membawa barang-barang dengan gaya yang unik" },
-                { name: "Sepatu Terbang", meaning: "Membuat langkahmu lebih ringan dengan kelebihannya" },
-                { name: "Kunci Jalan Bergosip", meaning: "Tak pernah diam tentang hal-hal di sekitarnya" },
-                { name: "Sisir Sibuk", meaning: "Selalu memberikan gaya yang berbeda pada setiap rambut" },
-                { name: "Gelas Tertawa", meaning: "Bergoyang-goyang saat diisi dengan minuman" },
-                { name: "Pisau Potong Goyang", meaning: "Selalu memberikan irama yang unik saat digunakan" },
-                { name: "Meja Ngobrol", meaning: "Tak pernah sepi dari percakapan" },
-                { name: "Piring Berguling", meaning: "Suka berputar-putar saat disentuh" },
-                { name: "Kompor Berpikir", meaning: "Selalu memberikan solusi yang cerdas untuk setiap masalah" },
-                { name: "Kulkas Goyang", meaning: "Bergetar saat diisi dengan makanan" },
-                { name: "Cangkir Berlari", meaning: "Tak pernah bisa diam di tempatnya" },
-                { name: "Lampu Malam Malas", meaning: "Terlihat malas tapi selalu memberikan cahaya yang lembut" },
-                { name: "Botol Kecap Keriting", meaning: "Selalu memberikan sentuhan yang berbeda pada masakan" },
-                { name: "Sendok Garpu Bergoyang", meaning: "Selalu menari-nari saat digunakan" },
-                { name: "Topi Tertawa", meaning: "Terlihat ceria di atas kepala siapa pun" },
-                { name: "Korek Api Malas", meaning: "Terlihat malas tapi selalu memberikan api yang menyala" },
-                { name: "Panci Pintar", meaning: "Selalu memberikan masakan yang sempurna" },
-                { name: "Kertas Berlari", meaning: "Tak pernah bisa diam di meja" },
-                { name: "Pensil Penghilang", meaning: "Selalu menghilang saat dibutuhkan" },
-                { name: "Penghapus Pelawak", meaning: "Selalu membuat kesalahan menjadi lucu" },
-                { name: "Buku Bergoyang", meaning: "Selalu memberikan sensasi yang berbeda saat dibaca" },
-                { name: "Ponsel Pintar", meaning: "Selalu memberikan jawaban yang tepat untuk setiap pertanyaan" },
-                { name: "Gunting Goyang", meaning: "Selalu menari-nari saat digunakan" },
-                { name: "Rak Buku Pintar", meaning: "Selalu memberikan buku yang sesuai dengan minatmu" },
-                { name: "Kipas Angin Tertawa", meaning: "Terlihat bahagia saat berputar-putar" },
-                { name: "Sabun Mandi Malas", meaning: "Terlihat malas tapi selalu memberikan kebersihan yang menyegarkan" },
-                { name: "Pulpen Pintar", meaning: "Selalu memberikan ide yang brilian" },
-                { name: "Gelas Pintar", meaning: "Selalu memberikan minuman yang sesuai dengan keinginanmu" },
-                { name: "Botol Air Mengejek", meaning: "Selalu memberikan komentar yang lucu saat diminum" },
-                { name: "Bantal Bergoyang", meaning: "Tak pernah bisa diam saat di atas kasur" },
-                { name: "Kursi Bergoyang", meaning: "Selalu memberikan sensasi yang menyenangkan saat digunakan" },
-                { name: "Rak Buku Bergoyang", meaning: "Selalu memberikan sensasi yang unik saat buku diletakkan di atasnya" },
-                { name: "Tas Pintar", meaning: "Selalu memberikan barang yang diperlukan saat dibutuhkan" },
-                { name: "Piring Berlari", meaning: "Tak pernah bisa diam di tempatnya" },
-                { name: "Panci Penyihir", meaning: "Mampu membuat masakan yang ajaib" },
-                { name: "Sendok Garpu Terbalik", meaning: "Tak pernah bisa diletakkan dengan benar" },
-                { name: "Kotak Pensil Berguling", meaning: "Selalu menggelinding saat diletakkan di meja" },
-                { name: "Kunci Kamar Mandi Tertawa", meaning: "Tak pernah bisa diam dan selalu tertawa-tawa" },
-                { name: "Kardus Malas", meaning: "Selalu terlihat malas tapi selalu memberikan perlindungan yang baik" },
-                { name: "Lampu Tertidur", meaning: "Terlihat ngantuk tapi selalu memberikan cahaya yang hangat" },
-                { name: "Anjing Pelacak", meaning: "Kamu setia dan penuh dedikasi, selalu menemukan jalan menuju tujuanmu." },
-                    // Tambahkan khodam lainnya sesuai kebutuhan
-                ];
-                const khodam = khodams[Math.floor(Math.random() * khodams.length)];
-                document.getElementById('khodamName').innerText = `Khodam: ${khodam.name}`;
-                document.getElementById('khodamMeaning').innerText = khodam.meaning;
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('loading').style.display = 'none'; // Sembunyikan spinner
-            }, 2000); // Delay untuk simulasi loading
-        }
 
-        function resetForm() {
-            document.getElementById('nameInput').value = '';
-            document.getElementById('result').style.display = 'none';
-        }
-    </script>
+        <audio src="https://audio.jukehost.co.uk/IPMxjSmevlyRs2Fe2A8ZqwGEsKb7HjGQ" id="linkmp3" class="sembunyi"></audio>
+
+   <div id="bgbelakang">
+     <!-- Wallpaper --><img src="" id="wallpaper"/>
+   </div>
+
+   <div class="overlay">
+     <div class="loading-message">Harap tunggu...</div>
+   </div>
+
+   <div id='Content'>
+
+   <p id="ket">Coba buka yaa <3</p>
+   <div><div id="loveIn" class="awalan">
+     <svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.000000, 2.000000)'><path d='M9.27542857,0.714285714 C14.0030476,0.714285714 17.836381,4.54666667 17.836381,9.2752381 C17.836381,14.0038095 14.0030476,17.8361905 9.27542857,17.8361905 C4.54685714,17.8361905 0.71447619,14.0038095 0.71447619,9.2752381 C0.71447619,4.54666667 4.54685714,0.714285714 9.27542857,0.714285714 Z'></path><path d='M17.8989524,16.487619 C18.678,16.487619 19.3094286,17.12 19.3094286,17.8980952 C19.3094286,18.6780952 18.678,19.3095238 17.8989524,19.3095238 C17.1199048,19.3095238 16.4875238,18.6780952 16.4875238,17.8980952 C16.4875238,17.12 17.1199048,16.487619 17.8989524,16.487619 Z'></path></g></svg>
+     <label>S.id/cobabagi</label>
+   </div></div>
+
+   <!-- Foto Atas --><div><img id="fotosatu" src=""/><img id="fotodua" src=""/><img id="fototiga" src=""/><img id="fotoempat" src=""/><img id="fotolima" src=""/><img id="fotoenam" src=""/><img id="fototujuh" src=""/><img id="fotodelapan" src=""/><img id="fotosembilan" src=""/></div>
+
+   <div><blockquote id='bq'>
+   <p id="kalimat"></p>
+   <p id="text-container"></p>
+   <p id="kalimatc"></p>
+   </blockquote></div>
+
+   <!-- Tombol Kirim Pesan -->
+   <div id="contTom">
+      <a id="By" class='button' onClick="jawab_y()">💌 Rindu</a>
+      <a id="Bn" class='button' onClick="jawab_n()">Engga</a>
+   </div>
+
+   </div>
+
+<!-- Jangan Edit Bagian Ini --><script>
+
+  function showDiv() {pergantian();setTimeout(kpemb,100);document.getElementById('Content').style = "opacity:1;margin-top:10vh;animation:kont 5s infinite;";document.querySelector("body").style.animation = "none 8s ease infinite";} function kpemb() {bq.style = "opacity:1;visibility:visible;margin-top:5px";}
+
+  function loadbrn(){
+          fotosatu.src = gambar1;
+      fotodua.src = gambar2;
+      fototiga.src = gambar3;
+      fotoempat.src = gambar4;
+      fotolima.src = gambar5;
+      /*fotoenam.src = gambar6;
+      fototujuh.src = gambar7;
+      fotodelapan.src = gambar8;
+      fotosembilan.src = gambar9;*/
+  }
+
+  function tombol(){contTom.style="opacity:1;transform: scale(1);";ftom=1;} ftom=0; function fakhiran(){document.getElementById("akhiran").style = "display:inline-flex";}
+  const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040',}); const swalsy = Swal.mixin({confirmButtonText: 'Iya', allowOutsideClick: false,}); const swalst = Swal.mixin({allowOutsideClick: false, showConfirmButton: false, timer: 1200, timerProgressBar: true, didOpen: () => {Swal.showLoading();const b = Swal.getHtmlContainer().querySelector('b');timerInterval = setInterval(() => {Swal.getTimerLeft()}, 100)},willClose: () => {clearInterval(timerInterval)}}); const style = document.createElement('style'); var today = new Date();var dd = String(today.getDate()).padStart(2, '0');var mm = String(today.getMonth() + 1).padStart(2, '0');var yyyy = today.getFullYear();const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];today = dd + ' ' + monthNames[today.getMonth()] + ' ' + yyyy;
+  function otomatis() {befanimkata();setTimeout(animkata,200);} function befanimkata(){kalimat.style="transform:scale(.5);";} function animkata() {kalimat.style="transform:scale(1);";}
+
+  function otomatis2() {befanimkataa();setTimeout(animkataa,200);} function befanimkataa(){kalimatc.style="transform:scale(.3);font-size:14px;margin-top:30px;";} function animkataa() {kalimatc.style="transform:scale(1);font-size:14px;margin-top:30px;";}
+
+  function finalakhir(){ftom=2;otomatis2();By.innerHTML = "Kirim Pesan";kalimatc.innerHTML = "Jawabanmu: " + pesanwhatsapp;} 
+  function sjawab_y(){if(ftom==1){kalimatc.innerHTML = "";otomatis2();jawab();} if(ftom==2){menuju();}}
+  async function jawab_y(){await swalst.fire({title: '' + pesanjawab_y, timer: 2000, imageUrl: '' + stikerpesanjawab_y.src,});}
+  async function jawab_n(){await swalst.fire({title: '' + pesanjawab_n, timer: 2000, imageUrl: '' + stikerpesanjawab_n.src,});}
+
+  var aa=0,katangetik;function ngetik() {if(aa<katangetik.length){kalimat.innerHTML += katangetik.charAt(aa);aa++;setTimeout(ngetik,50);}}
+  function bawahlagi(){ftganti += 1;fthilang();setTimeout(ftmuncul, 180);kalimatc.style="margin-top:10px;";kalimatc.innerHTML = emot;}
+  function kemunculanber(){setInterval(berjatuhan,200);}
+  const body = document.querySelector("body"); audio = new Audio('' + linkmp3.src); function berjatuhan() {const heart = document.createElement("div"); heart.className = "fas fa-heart"; heart.style.left = (Math.random() * 90)+"vw"; heart.style.animationDuration = (Math.random()*3)+2+"s"; body.appendChild(heart);} setInterval(function name(params) {var heartArr = document.querySelectorAll(".fa-heart"); if (heartArr.length > 100) {heartArr[0].remove()}},100);
+
+  function tfkata(){fkata+=1;} function bersihkan(){kalimat.innerHTML = "";}
+
+  const textContainer = document.getElementById('text-container');
+  let index = 0;
+  function displayText() {
+  kalimat.style.display = "none";
+  if (index < perkata.length) {
+    const word = document.createElement('span');
+    word.className = 'word';
+    word.textContent = perkata[index];
+    textContainer.appendChild(word);
+    index++;
+
+    if (perkata[index - 1] === "Bagi PAP") {
+      const lineBreak = document.createElement('br');
+      textContainer.appendChild(lineBreak);
+    }
+
+    setTimeout(() => {
+      word.style.opacity = 1;
+    }, 80);
+
+    setTimeout(() => {
+      displayText();
+    }, 800);
+  } else {
+    setInterval(berjatuhan, 200);
+    //setTimeout(bawahlagi, 500);
+    //setTimeout(tombol,500);
+  }
+}
+
+  ftganti = 1;
+  function ftmuncul(){
+    //if(ftganti==1){fotosatu.src = deffotostiker;}
+    if(ftganti==2){fotosatu.src = fotodua.src;}
+    if(ftganti==3){fotosatu.src = fototiga.src;}
+    if(ftganti==4){fotosatu.src = fotoempat.src;}
+    if(ftganti==5){fotosatu.src = fotolima.src;}
+
+    fotosatu.style="display:inline-flex;opacity:1;transition:all .7s ease;transform:scale(1);";
+  }
+  function fthilang(){fotosatu.style="display:inline-flex;opacity:1;transition:all .5s ease;transform:scale(.3)";}
+
+  fkata=1;function gantikata(){
+        if(fkata==1){otomatis();kalimat.innerHTML = kata1;}
+        if(fkata==2){otomatis();kalimat.innerHTML = kata2;}
+        if(fkata==3){otomatis();kalimat.innerHTML = kata3;}
+        if(fkata==4){kalimat.innerHTML="";displayText();}
+        setTimeout(tfkata, 200);
+        if(fkata!=1){ftganti += 1;fthilang();setTimeout(ftmuncul, 180);}
+  }
+
+Content.style="display:none";
+window.addEventListener("load", (event) => {
+  var overlay = document.querySelector(".overlay");
+  overlay.style.display = "none";
+  loadfoto();
+  wallpaper.style="opacity:.3";
+  Content.style = "opacity:1;margin-top:25vh";
+});
+
+    fungsiAwal=0;
+    document.getElementById("loveIn").onclick = function() {
+      if(fungsiAwal==0){
+        loveIn.style="transition:all .7s ease;opacity:0";
+        ket.style="transition:all .7s ease;opacity:0";
+        fungsiAwal=1;setTimeout(initengahan,300);
+      }
+    }
+
+  function initengahan(){
+    loveIn.style="display:none";
+    ket.style="display:none";
+    Content.style = "opacity:1;margin-top:7vh";
+    setTimeout(pertama,200);
+  }
+</script> <!-- Sampai Sini -->
+
+<script type="text/javascript">
+
+       async function menuju(){await swals.fire('Kirim pesan ke WhatsApp aku, ya!');window.location = "https://api.whatsapp.com/send?phone=&text=" + pesanwhatsapp;}
+
+       async function jawab(){
+           var { value: jawaban } = await swals.fire({
+               title: 'Ketik Pesan Kamu &#128073;&#128072;', 
+               input: 'text', allowOutsideClick: false, showCancelButton: false,
+           });
+           if(jawaban && jawaban.length < 21){
+                   window.jawaban = jawaban;
+               pesanwhatsapp = jawaban;
+               finalakhir();
+           } else {
+               await swals.fire('Ups!', 'Jawaban tidak boleh kosong atau lebih dari 20 karakter, ya!');jawab();
+           }
+       }
+
+  function pergantian(){
+      setTimeout(gantikata,100); //1
+      setTimeout(gantikata,1900); //2
+      setTimeout(gantikata,3300); //3
+      setTimeout(gantikata,4800); //4
+      setTimeout(bawahlagi, 7900); //5
+  }
+
+      async function pertama(){
+         kata1 = "Aku Orangnya Pelupa 👉👈";
+         kata2 = "Aku Juga Lupa..";
+         kata3 = "Sama Muka Kamu! 😝";
+         perkata = ["Coba deh", "Bagi PAP", "Banyak", "Banyak"];
+         emot = "Hehehehe 😆😝🥰💗";
+
+         pesanjawab_y = "Yeaayy! Makasihhh banyakk😍❤️";
+         pesanjawab_n = "Yaahh ko gitu sih 🫠";
+
+         fotosatu.style="display:inline-flex";audio.play();showDiv()
+       } 
+
+  function loadfoto(){
+    wallpaper.src = "https://i.ibb.co/fD2hBVb/05a2d088236566a07920d26a56efedba.webp";
+
+    gambar1 = "https://feeldreams.github.io/pandahiya.gif";
+    gambar2 = "https://feeldreams.github.io/mikir.gif";
+    gambar3 = "https://feeldreams.github.io/weee.gif";
+    gambar4 = "https://feeldreams.github.io/emawh.gif";
+    gambar5 = "https://feeldreams.github.io/pandaketawa2.gif";
+    /*gambar6 = "https://feeldreams.github.io/pusn.gif";
+    gambar7 = "https://feeldreams.github.io/mmua.gif";
+    gambar8 = "https://feeldreams.github.io/lompatin.gif";
+    gambar9 = "https://feeldreams.github.io/pandaberi.gif";
+    */
+    stikerpesanjawab_y = "https://feeldreams.github.io/pandapanah.gif";
+    stikerpesanjawab_n = "https://feeldreams.github.io/ngumpet.gif";
+
+    loadbrn();
+  }
+</script>
 </body>
-
-</html>
+  </html>
